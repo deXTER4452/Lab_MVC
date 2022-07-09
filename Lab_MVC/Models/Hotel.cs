@@ -143,8 +143,15 @@
             {
                 if(r.Occupied == true)
                 {
-                   //couldn't figure it out
+                    Reservation currentReservation = r.Reservations.First(r => r.startDate == DateTime.Today);  // not sure if it's gonna work, miseed some instructions at the start
+                    average += currentReservation.Occupants / r.Capacity;
+                    count++;
                 }
+            }
+
+            if(count > 0)
+            {
+                average = average / count;
             }
 
             return average;
@@ -152,7 +159,8 @@
 
         //List<Reservation> FutureBiikings()
         //{
-        //    //couldn't figure it out
+        //   // return Reservations.Where(r => r.startDate > DateTime.Today);
+        // not so confident using DateTime
         //}
 
     }  

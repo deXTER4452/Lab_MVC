@@ -8,7 +8,8 @@
         public bool IsCurrent { get; set; }
         public Client Client { get; set; }
         public Room Room { get; set; }
-        public int ReservationCount { get; set; } = 0;
+        public DateTime created { get; set; }
+        public DateTime startDate { get; set; }
 
 
 
@@ -22,7 +23,8 @@
             IsCurrent = true;
             Client = client;
             Room = room;
-            ReservationCount++;
+            created = DateTime.Now;
+
         }
     }
 }
