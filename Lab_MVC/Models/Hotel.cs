@@ -86,5 +86,74 @@
 
             return reservation;
         }
+
+        void Checkin(string clientName)
+        {
+            Client client = Clients.First(c => c.Name == clientName);
+
+            Reservation reservation = client.Reservations.First(r => r.Date == DateTime.Today);
+
+            Reservations.First(r => r.ReservationId == reservation.ReservationId).IsCurrent = true;
+            Rooms.First(r => r.Number == reservation.Room.Number).Reservations.First(r => r.ReservationId == reservation.ReservationId).IsCurrent = true;
+            client.Reservations.First(r => r.ReservationId == reservation.ReservationId).IsCurrent = true;
+
+            Rooms.First(r => r.Number == reservation.Room.Number).Occupied = true;
+        }
+
+        void CheckoutRoom(int RoomNumber)
+        {
+          //  Client client = Rooms.First(r => r.Number == RoomNumber.ToString()).Reservations.First()
+          //couldn't figure it out
+        }
+
+        void CheckoutRoom(string clientName)
+        {
+            Client client = Clients.First(c => c.Name == clientName);
+
+            //couldn't figure it out
+        }
+
+        int TotalCapacityRemaining()
+        {
+            int totalCap = 0;
+            foreach( Room room in Rooms)
+            {
+                totalCap += room.Capacity;
+
+                foreach(Reservation reservation in room.Reservations)
+                {
+                    if (reservation.Room.Number == room.Number)
+                    {
+                        totalCap -= reservation.Occupants;
+                        break;
+                    }
+                   
+                }
+            }
+
+            return totalCap;
+        }
+
+        int AverageOccupancyPercentage()
+        {
+            int average = 0;
+            int count = 0;
+
+            foreach(Room r in Rooms)
+            {
+                if(r.Occupied == true)
+                {
+                   //couldn't figure it out
+                }
+            }
+
+            return average;
+        }
+
+        //List<Reservation> FutureBiikings()
+        //{
+        //    //couldn't figure it out
+        //}
+
     }  
 }
