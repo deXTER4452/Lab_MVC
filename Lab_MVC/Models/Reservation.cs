@@ -8,6 +8,8 @@
         public bool IsCurrent { get; set; }
         public Client Client { get; set; }
         public Room Room { get; set; }
+        public int ReservationCount { get; set; } = 0;
+
 
 
         // CONSTRUCTORS
@@ -20,6 +22,7 @@
             IsCurrent = true;
             Client = client;
             Room = room;
+            ReservationCount++;
         }
     }
 }

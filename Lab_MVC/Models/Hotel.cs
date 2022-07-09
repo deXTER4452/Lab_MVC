@@ -42,9 +42,49 @@
             return rooms.ToList();
         }
 
-      // topThreeClients
-      //automaticReservation
-      //
+       List<Client> TopThreeClients()
+        {
+            List<Client> topClients = new List<Client>();
 
-    }
+            //foreach (Reservation r in Reservations.OrderByDescending(x => x.)
+            //{
+            //    topClients.Add(client);
+            //}
+            return topClients.ToList();
+
+            //Couldn't figure out the algorithm
+
+
+        }
+
+        Reservation AutomaticReservation(int clientID, int occupants, DateTime date)
+        {
+            Reservation reservation = null;
+            Client client = null;
+
+            Room room = Rooms.First(r => r.Occupied == false && r.Capacity >= occupants);
+
+            if (room.Reservations.Any(room => room.Date == date)) // check if already reserved for that time
+                                                                  // took from a example from stack overflow
+            {
+                return null;
+
+            }
+
+            //if such room exists, make a reservation
+
+            if(room != null)
+            {
+                reservation = new Reservation();
+                reservation.Occupants = occupants;
+                client = GetClient(clientID);
+                reservation.Client = client;
+            }
+
+            room.Reservations.Add(reservation);
+            client.Reservations.Add(reservation);
+
+            return reservation;
+        }
+    }  
 }
