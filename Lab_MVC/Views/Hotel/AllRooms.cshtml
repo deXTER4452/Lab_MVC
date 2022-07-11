@@ -1,0 +1,14 @@
+﻿@model List<Room>
+
+@foreach(Room r in Model){
+   
+   if(r.Occupied)
+   {
+       <h4>Room number :@r.Number is unoccupied and has a capacity of @r.Capacity</h4>
+   }
+   else{
+       <h4>Room number :@r.Number is occuped</h4>
+   }
+
+   
+}
